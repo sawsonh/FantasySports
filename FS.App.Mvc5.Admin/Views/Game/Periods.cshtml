@@ -1,0 +1,26 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Models.GamePeriodViewModel>
+
+<div>
+    @Html.Action("Navbar")
+    <p>
+        <button type="button" class="btn btn-default" onclick="top.location.href='@Url.Action("AddPeriod")'">Add Period</button>
+    </p>
+
+    @using (Html.BeginForm("DeletePeriod", "Game", new { area = "" }, FormMethod.Post, new { id = "deleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("periodId")
+    }
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Filterable(true);
+    columns.Add(c => c.Value).Filterable(true);
+    columns.Add(c => c.PickStartDateTime).Filterable(true);
+    columns.Add(c => c.PickEndDateTime).Filterable(true);
+    columns.Add(c => c.ReportStartDateTime).Filterable(true);
+    columns.Add(c => c.ReportEndDateTime).Filterable(true);
+    columns.Add(c => c.PeriodId, "Edit").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Periods", new { area = "", periodId = d.PeriodId }, new { @class = "modal-link" }).ToHtmlString());
+    columns.Add(c => c.PeriodId, "Delete").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Delete", "DeletePeriod", "Game", null, new { @class = "modal-link", onclick = "javascript:return submitForm([{periodId:" + d.PeriodId + "}], 'deleteForm');" }).ToHtmlString());
+}).WithPaging(10).Sortable(true)
+</div>

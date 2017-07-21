@@ -1,0 +1,9 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Models.ConfigurationViewModel>
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Filterable(true);
+    columns.Add(c => c.Value).Filterable(true);
+    columns.Add(c => c.Id).Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", "Configurations", new { area = "Nba", Id = d.Id }, new { @class = "modal-link" }).ToHtmlString());
+}).WithPaging(10).Sortable(true)

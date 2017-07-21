@@ -1,0 +1,120 @@
+﻿@{
+    var routeData = HttpContext.Current.Request.RequestContext.RouteData;
+    var controllerName = routeData.Values["controller"].ToString();
+    var actionName = routeData.Values["action"].ToString();
+    var areaName = routeData.DataTokens["area"]?.ToString();
+    if (string.IsNullOrEmpty(ViewBag.PageHeader))
+    {
+        ViewBag.PageHeader = string.IsNullOrEmpty(areaName) ? "Fantasy Sports" : areaName.ToUpper();
+    }
+    if (string.IsNullOrEmpty(ViewBag.PageSubHeader))
+    {
+        ViewBag.PageSubHeader = controllerName;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/Gridmvc")
+    @Styles.Render("~/Content/css/font-awesome")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", required: false)
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Fantasy Sports ADMIN", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                @Html.Partial("_TopNavPartial")
+                <li class="dropdown">
+                    @Html.Partial("_LoginPartial")
+                </li>
+            </ul>
+            @Html.Partial("_MenuPartial")
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            @ViewBag.PageHeader
+                            <small>@ViewBag.PageSubHeader</small>
+                        </h1>
+
+                        @if (ViewData.ModelState.Values.SelectMany(v => v.Errors).Any(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (ModelState modelState in ViewData.ModelState.Values)
+                                {
+                                    foreach (ModelError error in modelState.Errors.Where(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
+                                    {
+                                        @error.ErrorMessage<br />
+                                    }
+                                }
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(TempData["WarningMessage"]?.ToString()))
+                        {
+                            <div class="alert alert-warning">
+                                @TempData["WarningMessage"].ToString()
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"].ToString()
+                            </div>
+                        }
+
+                        @RenderBody()
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/gridmvc")
+    @Scripts.Render("~/bundles/game")
+    <script src="~/Scripts/plugins/anytime/anytime.5.0.5.js"></script>
+    <script>
+        $(".datepicker").AnyTime_picker({
+            baseYear: 2000,
+            earliest: new Date(2000, 0, 1, 0, 0, 0),
+            format: "%m/%d/%Y %h:%i:00 %p"
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

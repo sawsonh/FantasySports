@@ -1,0 +1,26 @@
+﻿@using GridMvc.Html
+@using GridMvc.Sorting
+@model IEnumerable<FS.App.Mvc5.Admin.Areas.Nba.Models.NbaGameViewModel>
+
+@using (Html.BeginForm("Resync", "Games", FormMethod.Post, new { area = "Nba", id = "submitForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-2">
+        @Html.TextBox("dateTime", DateTime.Now.ToString("MM/dd/yyyy"), new { @class = "form-control datepicker" })
+    </div>
+    <div class="col-lg-2">
+        <button type="submit" class="btn btn-default">Resync</button>
+    </div>
+}
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.DateTime).Filterable(true).SortInitialDirection(GridSortDirection.Descending);
+    columns.Add(c => c.Quarter).Filterable(true);
+    columns.Add(c => c.Status).Filterable(true);
+    columns.Add(c => c.GameClock);
+    columns.Add(c => c.Visitor).Filterable(true);
+    columns.Add(c => c.VisitorScore).Titled("");
+    columns.Add(c => c.HomeScore).Titled("");
+    columns.Add(c => c.Home).Filterable(true);
+}).WithPaging(10).Sortable(true)

@@ -1,0 +1,14 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Models.EntryViewModel>
+
+@using (Html.BeginForm("Delete", "Entry", FormMethod.Post, new { area = "", id = "deleteForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("id")
+}
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Filterable(true);
+    columns.Add(c => c.Id, "Edit").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", new { area = "", id = d.Id }, new { @class = "modal-link" }).ToHtmlString());
+    columns.Add(c => c.Id, "Delete").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Delete", "Delete", null, new { @class = "modal-link", onclick = "javascript:return submitForm([{id:" + d.Id + "}], 'deleteForm');" }).ToHtmlString());
+}).WithPaging(10).Sortable(true)

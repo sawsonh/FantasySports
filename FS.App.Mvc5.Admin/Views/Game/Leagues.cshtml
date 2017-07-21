@@ -1,0 +1,21 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Models.GameLeagueViewModel>
+
+<div>
+    @Html.Action("Navbar")
+    <p>
+        <button type="button" class="btn btn-default" onclick="top.location.href='@Url.Action("AddLeague")'">Add League</button>
+    </p>
+
+    @using (Html.BeginForm("Leagues", "Game", new { area = "" }, FormMethod.Post, new { id = "deleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("leagueId")
+    }
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(c => c.Abbreviation).Titled("");
+        columns.Add(c => c.Name).Filterable(true);
+        columns.Add(c => c.LeagueId, "Delete").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Delete", "Leagues", "Game", null, new { @class = "modal-link", onclick = "javascript:return submitForm([{leagueId:" + d.LeagueId + "}], 'deleteForm');" }).ToHtmlString());
+    }).WithPaging(10).Sortable(true)
+</div>

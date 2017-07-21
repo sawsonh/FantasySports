@@ -1,0 +1,27 @@
+﻿@model FS.App.Mvc5.Admin.Models.GameViewModel
+@{ 
+    Layout = null;
+    var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString().ToLower();
+    ViewData["x_" + actionName] = "active";
+}
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="javascript:void(0)">@Model.Name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul id="gameNavbar" class="nav navbar-nav">
+                <li class="@ViewData["x_index"]">
+                    <a href="@Url.Action("Index")">Home</a>
+                </li>
+                <li class="@ViewData["x_leagues"] @ViewData["x_addleague"]">
+                    <a href="@Url.Action("Leagues")">Leagues</a>
+                </li>
+                <li class="@ViewData["x_periods"] @ViewData["x_addperiod"]">
+                    <a href="@Url.Action("Periods")">Periods</a>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>

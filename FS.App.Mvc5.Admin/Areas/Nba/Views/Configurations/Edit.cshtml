@@ -1,0 +1,18 @@
+﻿@model FS.App.Mvc5.Admin.Models.ConfigurationViewModel
+
+@using (Html.BeginForm("Index", "Configurations", FormMethod.Post, new { area = "Nba", id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <p>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", disabled = "disabled" })
+            @Html.LabelFor(m => m.Value)
+            @Html.TextBoxFor(m => m.Value, new { @class = "form-control" })
+        </p>
+        <p>
+            <button type="submit" class="btn btn-default">Update</button>
+            <button onclick="top.location.href='@Url.Action("Index", new { id = "" })'; return false;" class="btn btn-default">Cancel</button>
+        </p>
+    </div>
+}

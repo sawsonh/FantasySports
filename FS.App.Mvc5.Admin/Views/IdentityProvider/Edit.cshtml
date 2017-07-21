@@ -1,0 +1,8 @@
+﻿@model FS.App.Mvc5.Admin.Models.IdentityProviderViewModel
+
+@{
+    ViewBag.FormPostTo = "Index";
+    ViewBag.FormCancelTo = "Index";
+    ViewBag.FormPostButton = "Update";
+    @Html.Partial("_FormPartial", Model)
+}

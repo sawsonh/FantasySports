@@ -1,0 +1,21 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Areas.Nba.Models.NbaTeamStatViewModel>
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.SeasonDesc).Titled("Season").Filterable(true);
+    columns.Add(c => c.Abbreviation).Titled("Team").Filterable(true);
+    columns.Add(c => c.GP).Titled("GP").Filterable(true);
+    columns.Add(c => c.W).Titled("W").Filterable(true);
+    columns.Add(c => c.L).Titled("L").Filterable(true);
+    columns.Add(c => c.FGPCT).Titled("FG%").Filterable(true);
+    columns.Add(c => c.FG3PCT).Titled("3P%").Filterable(true);
+    columns.Add(c => c.FTPCT).Titled("FT%").Filterable(true);
+    columns.Add(c => c.OREB).Titled("OREB").Filterable(true);
+    columns.Add(c => c.REB).Titled("REB").Filterable(true);
+    columns.Add(c => c.AST).Titled("AST").Filterable(true);
+    columns.Add(c => c.STL).Titled("STL").Filterable(true);
+    columns.Add(c => c.BLK).Titled("BLK").Filterable(true);
+    columns.Add(c => c.TOVR).Titled("TO").Filterable(true);
+    columns.Add(c => c.PTS).Titled("PTS").Filterable(true);
+}).WithPaging(15).Sortable(true)

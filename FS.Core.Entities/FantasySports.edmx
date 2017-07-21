@@ -1,0 +1,1115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FantasySportsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppSettings">
+          <Key>
+            <PropertyRef Name="AppId" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppId" Type="int" Nullable="false" />
+          <Property Name="KeyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Entries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameLeagues">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="LeagueId" />
+          </Key>
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="LeagueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegistrationStartDate" Type="datetime" Nullable="false" />
+          <Property Name="RegistrationEndDate" Type="datetime" Nullable="false" />
+          <Property Name="PlayStartDate" Type="datetime" Nullable="false" />
+          <Property Name="PlayEndDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityProviders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppId" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Leagues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="NbaBoxscores">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameId" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="StartPosition" Type="nvarchar" MaxLength="3" />
+          <Property Name="Min" Type="nvarchar" MaxLength="10" />
+          <Property Name="FGM" Type="int" />
+          <Property Name="FGA" Type="int" />
+          <Property Name="FG3M" Type="int" />
+          <Property Name="FG3A" Type="int" />
+          <Property Name="FTM" Type="int" />
+          <Property Name="FTA" Type="int" />
+          <Property Name="OREB" Type="int" />
+          <Property Name="REB" Type="int" />
+          <Property Name="AST" Type="int" />
+          <Property Name="STL" Type="int" />
+          <Property Name="BLK" Type="int" />
+          <Property Name="TOVR" Type="int" />
+          <Property Name="PF" Type="int" />
+          <Property Name="PTS" Type="int" />
+        </EntityType>
+        <EntityType Name="NbaGameLinescores">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PeriodValue" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameId" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="PeriodValue" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="PeriodName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Score" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NbaPlayers">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerId" Type="int" Nullable="false" />
+          <Property Name="PlayerName" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NbaTeams">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Arena" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="NbaTeamStats">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="SeasonDesc" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="SeasonDesc" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GP" Type="int" />
+          <Property Name="W" Type="int" />
+          <Property Name="L" Type="int" />
+          <Property Name="FGPCT" Type="float" />
+          <Property Name="FG3PCT" Type="float" />
+          <Property Name="FTPCT" Type="float" />
+          <Property Name="OREB" Type="float" />
+          <Property Name="REB" Type="float" />
+          <Property Name="AST" Type="float" />
+          <Property Name="STL" Type="float" />
+          <Property Name="BLK" Type="float" />
+          <Property Name="TOVR" Type="float" />
+          <Property Name="PTS" Type="float" />
+        </EntityType>
+        <EntityType Name="Periods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Value" Type="int" />
+          <Property Name="PickStartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PickEndDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ReportStartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ReportEndDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Picks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryId" Type="int" Nullable="false" />
+          <Property Name="PeriodId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdpId" Type="int" Nullable="false" />
+          <Property Name="IdpUserId" Type="nvarchar" MaxLength="60" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FantasySports.dbo.vNbaGames' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vNbaGames">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="SeasonId" />
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="PeriodValue" />
+            <PropertyRef Name="PeriodStatus" />
+            <PropertyRef Name="PeriodName" />
+            <PropertyRef Name="GameStatus" />
+            <PropertyRef Name="GameClock" />
+            <PropertyRef Name="VisitorId" />
+            <PropertyRef Name="HomeId" />
+            <PropertyRef Name="HomeTeamAbbreviation" />
+            <PropertyRef Name="HomeTeamCity" />
+            <PropertyRef Name="HomeTeamNickname" />
+            <PropertyRef Name="VisitorTeamAbbreviation" />
+            <PropertyRef Name="VisitorTeamCity" />
+            <PropertyRef Name="VisitorTeamNickname" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="GameId" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="SeasonId" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="PeriodValue" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="PeriodStatus" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PeriodName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GameStatus" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="GameClock" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="VisitorId" Type="int" Nullable="false" />
+          <Property Name="VisitorScore" Type="nvarchar" MaxLength="3" />
+          <Property Name="HomeId" Type="int" Nullable="false" />
+          <Property Name="HomeScore" Type="nvarchar" MaxLength="3" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="HomeTeamAbbreviation" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="HomeTeamCity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HomeTeamNickname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisitorTeamAbbreviation" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="VisitorTeamCity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisitorTeamNickname" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FantasySports.dbo.vNbaTeamStats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vNbaTeamStats">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="SeasonDesc" />
+            <PropertyRef Name="Abbreviation" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="SeasonDesc" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="GP" Type="int" />
+          <Property Name="W" Type="int" />
+          <Property Name="L" Type="int" />
+          <Property Name="FGPCT" Type="float" />
+          <Property Name="FG3PCT" Type="float" />
+          <Property Name="FTPCT" Type="float" />
+          <Property Name="OREB" Type="float" />
+          <Property Name="REB" Type="float" />
+          <Property Name="AST" Type="float" />
+          <Property Name="STL" Type="float" />
+          <Property Name="BLK" Type="float" />
+          <Property Name="TOVR" Type="float" />
+          <Property Name="PTS" Type="float" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FantasySports.dbo.vUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="IdentityProviderName" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="IdentityProviderName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Entries_Games">
+          <End Role="Games" Type="Self.Games" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entries">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameLeagues_Games">
+          <End Role="Games" Type="Self.Games" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameLeagues" Type="Self.GameLeagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameLeagues">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameLeagues_Leagues">
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameLeagues" Type="Self.GameLeagues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameLeagues">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Periods_Games">
+          <End Role="Games" Type="Self.Games" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Periods" Type="Self.Periods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Periods">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picks_Periods">
+          <End Role="Periods" Type="Self.Periods" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Picks" Type="Self.Picks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Picks">
+              <PropertyRef Name="PeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_IdentityProviders">
+          <End Role="IdentityProviders" Type="Self.IdentityProviders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityProviders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FantasySportsModelStoreContainer">
+          <EntitySet Name="AppSettings" EntityType="Self.AppSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entries" EntityType="Self.Entries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameLeagues" EntityType="Self.GameLeagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityProviders" EntityType="Self.IdentityProviders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NbaBoxscores" EntityType="Self.NbaBoxscores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NbaGameLinescores" EntityType="Self.NbaGameLinescores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NbaPlayers" EntityType="Self.NbaPlayers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NbaTeams" EntityType="Self.NbaTeams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NbaTeamStats" EntityType="Self.NbaTeamStats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periods" EntityType="Self.Periods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picks" EntityType="Self.Picks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vNbaGames" EntityType="Self.vNbaGames" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vNbaGames].[Id] AS [Id], 
+    [vNbaGames].[GameId] AS [GameId], 
+    [vNbaGames].[SeasonId] AS [SeasonId], 
+    [vNbaGames].[DateTime] AS [DateTime], 
+    [vNbaGames].[PeriodValue] AS [PeriodValue], 
+    [vNbaGames].[PeriodStatus] AS [PeriodStatus], 
+    [vNbaGames].[PeriodName] AS [PeriodName], 
+    [vNbaGames].[GameStatus] AS [GameStatus], 
+    [vNbaGames].[GameClock] AS [GameClock], 
+    [vNbaGames].[VisitorId] AS [VisitorId], 
+    [vNbaGames].[VisitorScore] AS [VisitorScore], 
+    [vNbaGames].[HomeId] AS [HomeId], 
+    [vNbaGames].[HomeScore] AS [HomeScore], 
+    [vNbaGames].[LastUpdated] AS [LastUpdated], 
+    [vNbaGames].[HomeTeamAbbreviation] AS [HomeTeamAbbreviation], 
+    [vNbaGames].[HomeTeamCity] AS [HomeTeamCity], 
+    [vNbaGames].[HomeTeamNickname] AS [HomeTeamNickname], 
+    [vNbaGames].[VisitorTeamAbbreviation] AS [VisitorTeamAbbreviation], 
+    [vNbaGames].[VisitorTeamCity] AS [VisitorTeamCity], 
+    [vNbaGames].[VisitorTeamNickname] AS [VisitorTeamNickname]
+    FROM [dbo].[vNbaGames] AS [vNbaGames]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vNbaTeamStats" EntityType="Self.vNbaTeamStats" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vNbaTeamStats].[Id] AS [Id], 
+    [vNbaTeamStats].[TeamId] AS [TeamId], 
+    [vNbaTeamStats].[SeasonDesc] AS [SeasonDesc], 
+    [vNbaTeamStats].[GP] AS [GP], 
+    [vNbaTeamStats].[W] AS [W], 
+    [vNbaTeamStats].[L] AS [L], 
+    [vNbaTeamStats].[FGPCT] AS [FGPCT], 
+    [vNbaTeamStats].[FG3PCT] AS [FG3PCT], 
+    [vNbaTeamStats].[FTPCT] AS [FTPCT], 
+    [vNbaTeamStats].[OREB] AS [OREB], 
+    [vNbaTeamStats].[REB] AS [REB], 
+    [vNbaTeamStats].[AST] AS [AST], 
+    [vNbaTeamStats].[STL] AS [STL], 
+    [vNbaTeamStats].[BLK] AS [BLK], 
+    [vNbaTeamStats].[TOVR] AS [TOVR], 
+    [vNbaTeamStats].[PTS] AS [PTS], 
+    [vNbaTeamStats].[Abbreviation] AS [Abbreviation]
+    FROM [dbo].[vNbaTeamStats] AS [vNbaTeamStats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vUsers" EntityType="Self.vUsers" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vUsers].[FirstName] AS [FirstName], 
+    [vUsers].[Id] AS [Id], 
+    [vUsers].[LastName] AS [LastName], 
+    [vUsers].[BirthDate] AS [BirthDate], 
+    [vUsers].[Email] AS [Email], 
+    [vUsers].[CreateDateTime] AS [CreateDateTime], 
+    [vUsers].[IdentityProviderName] AS [IdentityProviderName]
+    FROM [dbo].[vUsers] AS [vUsers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Entries_Games" Association="Self.FK_Entries_Games">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Users" Association="Self.FK_Entries_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Entries" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameLeagues_Games" Association="Self.FK_GameLeagues_Games">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="GameLeagues" EntitySet="GameLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameLeagues_Leagues" Association="Self.FK_GameLeagues_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="GameLeagues" EntitySet="GameLeagues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Periods_Games" Association="Self.FK_Periods_Games">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Periods" EntitySet="Periods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picks_Periods" Association="Self.FK_Picks_Periods">
+            <End Role="Periods" EntitySet="Periods" />
+            <End Role="Picks" EntitySet="Picks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_IdentityProviders" Association="Self.FK_Users_IdentityProviders">
+            <End Role="IdentityProviders" EntitySet="IdentityProviders" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FS.Core.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NbaBoxscore">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="GameId" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="StartPosition" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Min" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FGM" Type="Int32" />
+          <Property Name="FGA" Type="Int32" />
+          <Property Name="FG3M" Type="Int32" />
+          <Property Name="FG3A" Type="Int32" />
+          <Property Name="FTM" Type="Int32" />
+          <Property Name="FTA" Type="Int32" />
+          <Property Name="OREB" Type="Int32" />
+          <Property Name="REB" Type="Int32" />
+          <Property Name="AST" Type="Int32" />
+          <Property Name="STL" Type="Int32" />
+          <Property Name="BLK" Type="Int32" />
+          <Property Name="TOVR" Type="Int32" />
+          <Property Name="PF" Type="Int32" />
+          <Property Name="PTS" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="NbaPlayer">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="NbaTeamStat">
+          <Key>
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="SeasonDesc" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="SeasonDesc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GP" Type="Int32" />
+          <Property Name="W" Type="Int32" />
+          <Property Name="L" Type="Int32" />
+          <Property Name="FGPCT" Type="Double" />
+          <Property Name="FG3PCT" Type="Double" />
+          <Property Name="FTPCT" Type="Double" />
+          <Property Name="OREB" Type="Double" />
+          <Property Name="REB" Type="Double" />
+          <Property Name="AST" Type="Double" />
+          <Property Name="STL" Type="Double" />
+          <Property Name="BLK" Type="Double" />
+          <Property Name="TOVR" Type="Double" />
+          <Property Name="PTS" Type="Double" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="FantasySportsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NbaBoxscores" EntityType="Self.NbaBoxscore" />
+          <EntitySet Name="NbaPlayers" EntityType="Self.NbaPlayer" />
+          <EntitySet Name="NbaTeamStats" EntityType="Self.NbaTeamStat" />
+          <EntitySet Name="Entries" EntityType="FS.Core.Entities.Entry" />
+          <EntitySet Name="Games" EntityType="FS.Core.Entities.Game" />
+          <EntitySet Name="IdentityProviders" EntityType="FS.Core.Entities.IdentityProvider" />
+          <EntitySet Name="Leagues" EntityType="FS.Core.Entities.League" />
+          <EntitySet Name="Users" EntityType="FS.Core.Entities.User" />
+          <AssociationSet Name="FK_Entries_Games" Association="FS.Core.Entities.FK_Entries_Games">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entries_Users" Association="FS.Core.Entities.FK_Entries_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Entry" EntitySet="Entries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_IdentityProviders" Association="FS.Core.Entities.FK_Users_IdentityProviders">
+            <End Role="IdentityProvider" EntitySet="IdentityProviders" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="GameLeagues1" Association="FS.Core.Entities.GameLeagues">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="League" EntitySet="Leagues" />
+          </AssociationSet>
+          <EntitySet Name="AppSettings" EntityType="FS.Core.Entities.AppSetting" />
+          <EntitySet Name="NbaGameLinescores" EntityType="FS.Core.Entities.NbaGameLinescore" />
+          <EntitySet Name="Periods" EntityType="FS.Core.Entities.Period" />
+          <EntitySet Name="Picks" EntityType="FS.Core.Entities.Pick" />
+          <AssociationSet Name="FK_Picks_Entries" Association="FS.Core.Entities.FK_Picks_Entries">
+            <End Role="Entry" EntitySet="Entries" />
+            <End Role="Pick" EntitySet="Picks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picks_Periods" Association="FS.Core.Entities.FK_Picks_Periods">
+            <End Role="Period" EntitySet="Periods" />
+            <End Role="Pick" EntitySet="Picks" />
+          </AssociationSet>
+          <EntitySet Name="NbaTeams" EntityType="FS.Core.Entities.NbaTeam" />
+          <EntitySet Name="vNbaGames" EntityType="FS.Core.Entities.vNbaGame" />
+          <AssociationSet Name="FK_Periods_Games" Association="FS.Core.Entities.FK_Periods_Games">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Period" EntitySet="Periods" />
+          </AssociationSet>
+          <EntitySet Name="vNbaTeamStats" EntityType="FS.Core.Entities.vNbaTeamStat" />
+          <EntitySet Name="vUsers" EntityType="FS.Core.Entities.vUser" />
+          </EntityContainer>
+        <EntityType Name="Entry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Game" Relationship="FS.Core.Entities.FK_Entries_Games" FromRole="Entry" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="FS.Core.Entities.FK_Entries_Users" FromRole="Entry" ToRole="User" />
+          <NavigationProperty Name="Picks" Relationship="FS.Core.Entities.FK_Picks_Entries" FromRole="Entry" ToRole="Pick" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RegistrationEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlayStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlayEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Entries" Relationship="FS.Core.Entities.FK_Entries_Games" FromRole="Game" ToRole="Entry" />
+          <NavigationProperty Name="Leagues" Relationship="FS.Core.Entities.GameLeagues" FromRole="Game" ToRole="League" />
+          <NavigationProperty Name="Periods" Relationship="FS.Core.Entities.FK_Periods_Games" FromRole="Game" ToRole="Period" />
+        </EntityType>
+        <EntityType Name="IdentityProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="FS.Core.Entities.FK_Users_IdentityProviders" FromRole="IdentityProvider" ToRole="User" />
+        </EntityType>
+        <EntityType Name="League">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Abbreviation" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Games" Relationship="FS.Core.Entities.GameLeagues" FromRole="League" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdpId" Type="Int32" Nullable="false" />
+          <Property Name="IdpUserId" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Entries" Relationship="FS.Core.Entities.FK_Entries_Users" FromRole="User" ToRole="Entry" />
+          <NavigationProperty Name="IdentityProvider" Relationship="FS.Core.Entities.FK_Users_IdentityProviders" FromRole="User" ToRole="IdentityProvider" />
+        </EntityType>
+        <Association Name="FK_Entries_Games">
+          <End Type="FS.Core.Entities.Game" Role="Game" Multiplicity="1" />
+          <End Type="FS.Core.Entities.Entry" Role="Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entries_Users">
+          <End Type="FS.Core.Entities.User" Role="User" Multiplicity="1" />
+          <End Type="FS.Core.Entities.Entry" Role="Entry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entry">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_IdentityProviders">
+          <End Type="FS.Core.Entities.IdentityProvider" Role="IdentityProvider" Multiplicity="1" />
+          <End Type="FS.Core.Entities.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityProvider">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GameLeagues">
+          <End Type="FS.Core.Entities.Game" Role="Game" Multiplicity="*" />
+          <End Type="FS.Core.Entities.League" Role="League" Multiplicity="*" />
+        </Association>
+        <EntityType Name="AppSetting">
+          <Key>
+            <PropertyRef Name="AppId" />
+            <PropertyRef Name="KeyName" />
+          </Key>
+          <Property Name="AppId" Type="Int32" Nullable="false" />
+          <Property Name="KeyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="NbaGameLinescore">
+          <Key>
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="PeriodValue" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="PeriodValue" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="PickStartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PickEndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReportStartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReportEndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Picks" Relationship="FS.Core.Entities.FK_Picks_Periods" FromRole="Period" ToRole="Pick" />
+          <NavigationProperty Name="Game" Relationship="FS.Core.Entities.FK_Periods_Games" FromRole="Period" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Pick">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryId" Type="Int32" Nullable="false" />
+          <Property Name="PeriodId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Entry" Relationship="FS.Core.Entities.FK_Picks_Entries" FromRole="Pick" ToRole="Entry" />
+          <NavigationProperty Name="Period" Relationship="FS.Core.Entities.FK_Picks_Periods" FromRole="Pick" ToRole="Period" />
+        </EntityType>
+        <Association Name="FK_Picks_Entries">
+          <End Type="FS.Core.Entities.Entry" Role="Entry" Multiplicity="1" />
+          <End Type="FS.Core.Entities.Pick" Role="Pick" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pick">
+              <PropertyRef Name="EntryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picks_Periods">
+          <End Type="FS.Core.Entities.Period" Role="Period" Multiplicity="1" />
+          <End Type="FS.Core.Entities.Pick" Role="Pick" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Period">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pick">
+              <PropertyRef Name="PeriodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NbaTeam">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nickname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Arena" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vNbaGame">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="SeasonId" />
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="PeriodValue" />
+            <PropertyRef Name="PeriodStatus" />
+            <PropertyRef Name="PeriodName" />
+            <PropertyRef Name="GameStatus" />
+            <PropertyRef Name="GameClock" />
+            <PropertyRef Name="VisitorId" />
+            <PropertyRef Name="HomeId" />
+            <PropertyRef Name="HomeTeamAbbreviation" />
+            <PropertyRef Name="HomeTeamCity" />
+            <PropertyRef Name="HomeTeamNickname" />
+            <PropertyRef Name="VisitorTeamAbbreviation" />
+            <PropertyRef Name="VisitorTeamCity" />
+            <PropertyRef Name="VisitorTeamNickname" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="GameId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="SeasonId" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PeriodValue" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodStatus" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GameStatus" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="GameClock" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorId" Type="Int32" Nullable="false" />
+          <Property Name="VisitorScore" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="HomeId" Type="Int32" Nullable="false" />
+          <Property Name="HomeScore" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="HomeTeamAbbreviation" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamCity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamNickname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamAbbreviation" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamCity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamNickname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Periods_Games">
+          <End Type="FS.Core.Entities.Game" Role="Game" Multiplicity="1" />
+          <End Type="FS.Core.Entities.Period" Role="Period" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Period">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vNbaTeamStat">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TeamId" />
+            <PropertyRef Name="SeasonDesc" />
+            <PropertyRef Name="Abbreviation" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="SeasonDesc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="GP" Type="Int32" />
+          <Property Name="W" Type="Int32" />
+          <Property Name="L" Type="Int32" />
+          <Property Name="FGPCT" Type="Double" />
+          <Property Name="FG3PCT" Type="Double" />
+          <Property Name="FTPCT" Type="Double" />
+          <Property Name="OREB" Type="Double" />
+          <Property Name="REB" Type="Double" />
+          <Property Name="AST" Type="Double" />
+          <Property Name="STL" Type="Double" />
+          <Property Name="BLK" Type="Double" />
+          <Property Name="TOVR" Type="Double" />
+          <Property Name="PTS" Type="Double" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vUser">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="IdentityProviderName" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdentityProviderName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FantasySportsModelStoreContainer" CdmEntityContainer="FantasySportsEntities">
+          <EntitySetMapping Name="NbaBoxscores">
+            <EntityTypeMapping TypeName="FS.Core.Entities.NbaBoxscore">
+              <MappingFragment StoreEntitySet="NbaBoxscores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="StartPosition" ColumnName="StartPosition" />
+                <ScalarProperty Name="Min" ColumnName="Min" />
+                <ScalarProperty Name="FGM" ColumnName="FGM" />
+                <ScalarProperty Name="FGA" ColumnName="FGA" />
+                <ScalarProperty Name="FG3M" ColumnName="FG3M" />
+                <ScalarProperty Name="FG3A" ColumnName="FG3A" />
+                <ScalarProperty Name="FTM" ColumnName="FTM" />
+                <ScalarProperty Name="FTA" ColumnName="FTA" />
+                <ScalarProperty Name="OREB" ColumnName="OREB" />
+                <ScalarProperty Name="REB" ColumnName="REB" />
+                <ScalarProperty Name="AST" ColumnName="AST" />
+                <ScalarProperty Name="STL" ColumnName="STL" />
+                <ScalarProperty Name="BLK" ColumnName="BLK" />
+                <ScalarProperty Name="TOVR" ColumnName="TOVR" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="PTS" ColumnName="PTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NbaPlayers">
+            <EntityTypeMapping TypeName="FS.Core.Entities.NbaPlayer">
+              <MappingFragment StoreEntitySet="NbaPlayers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NbaTeamStats">
+            <EntityTypeMapping TypeName="FS.Core.Entities.NbaTeamStat">
+              <MappingFragment StoreEntitySet="NbaTeamStats">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="SeasonDesc" ColumnName="SeasonDesc" />
+                <ScalarProperty Name="GP" ColumnName="GP" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="FGPCT" ColumnName="FGPCT" />
+                <ScalarProperty Name="FG3PCT" ColumnName="FG3PCT" />
+                <ScalarProperty Name="FTPCT" ColumnName="FTPCT" />
+                <ScalarProperty Name="OREB" ColumnName="OREB" />
+                <ScalarProperty Name="REB" ColumnName="REB" />
+                <ScalarProperty Name="AST" ColumnName="AST" />
+                <ScalarProperty Name="STL" ColumnName="STL" />
+                <ScalarProperty Name="BLK" ColumnName="BLK" />
+                <ScalarProperty Name="TOVR" ColumnName="TOVR" />
+                <ScalarProperty Name="PTS" ColumnName="PTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entries">
+            <EntityTypeMapping TypeName="FS.Core.Entities.Entry">
+              <MappingFragment StoreEntitySet="Entries">
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="FS.Core.Entities.Game">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="PlayEndDate" ColumnName="PlayEndDate" />
+                <ScalarProperty Name="PlayStartDate" ColumnName="PlayStartDate" />
+                <ScalarProperty Name="RegistrationEndDate" ColumnName="RegistrationEndDate" />
+                <ScalarProperty Name="RegistrationStartDate" ColumnName="RegistrationStartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityProviders">
+            <EntityTypeMapping TypeName="FS.Core.Entities.IdentityProvider">
+              <MappingFragment StoreEntitySet="IdentityProviders">
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leagues">
+            <EntityTypeMapping TypeName="FS.Core.Entities.League">
+              <MappingFragment StoreEntitySet="Leagues">
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FS.Core.Entities.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="IdpUserId" ColumnName="IdpUserId" />
+                <ScalarProperty Name="IdpId" ColumnName="IdpId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GameLeagues1" TypeName="FS.Core.Entities.GameLeagues" StoreEntitySet="GameLeagues">
+            <EndProperty Name="League">
+              <ScalarProperty Name="Id" ColumnName="LeagueId" />
+            </EndProperty>
+            <EndProperty Name="Game">
+              <ScalarProperty Name="Id" ColumnName="GameId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="AppSettings">
+            <EntityTypeMapping TypeName="FS.Core.Entities.AppSetting">
+              <MappingFragment StoreEntitySet="AppSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="KeyName" ColumnName="KeyName" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NbaGameLinescores">
+            <EntityTypeMapping TypeName="FS.Core.Entities.NbaGameLinescore">
+              <MappingFragment StoreEntitySet="NbaGameLinescores">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="PeriodName" ColumnName="PeriodName" />
+                <ScalarProperty Name="PeriodValue" ColumnName="PeriodValue" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="FS.Core.Entities.Period">
+              <MappingFragment StoreEntitySet="Periods">
+                <ScalarProperty Name="ReportEndDateTime" ColumnName="ReportEndDateTime" />
+                <ScalarProperty Name="ReportStartDateTime" ColumnName="ReportStartDateTime" />
+                <ScalarProperty Name="PickEndDateTime" ColumnName="PickEndDateTime" />
+                <ScalarProperty Name="PickStartDateTime" ColumnName="PickStartDateTime" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Picks">
+            <EntityTypeMapping TypeName="FS.Core.Entities.Pick">
+              <MappingFragment StoreEntitySet="Picks">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="PeriodId" ColumnName="PeriodId" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NbaTeams">
+            <EntityTypeMapping TypeName="FS.Core.Entities.NbaTeam">
+              <MappingFragment StoreEntitySet="NbaTeams">
+                <ScalarProperty Name="Arena" ColumnName="Arena" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vNbaGames">
+            <EntityTypeMapping TypeName="FS.Core.Entities.vNbaGame">
+              <MappingFragment StoreEntitySet="vNbaGames">
+                <ScalarProperty Name="VisitorTeamNickname" ColumnName="VisitorTeamNickname" />
+                <ScalarProperty Name="VisitorTeamCity" ColumnName="VisitorTeamCity" />
+                <ScalarProperty Name="VisitorTeamAbbreviation" ColumnName="VisitorTeamAbbreviation" />
+                <ScalarProperty Name="HomeTeamNickname" ColumnName="HomeTeamNickname" />
+                <ScalarProperty Name="HomeTeamCity" ColumnName="HomeTeamCity" />
+                <ScalarProperty Name="HomeTeamAbbreviation" ColumnName="HomeTeamAbbreviation" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="HomeId" ColumnName="HomeId" />
+                <ScalarProperty Name="VisitorScore" ColumnName="VisitorScore" />
+                <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+                <ScalarProperty Name="GameClock" ColumnName="GameClock" />
+                <ScalarProperty Name="GameStatus" ColumnName="GameStatus" />
+                <ScalarProperty Name="PeriodName" ColumnName="PeriodName" />
+                <ScalarProperty Name="PeriodStatus" ColumnName="PeriodStatus" />
+                <ScalarProperty Name="PeriodValue" ColumnName="PeriodValue" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vNbaTeamStats">
+            <EntityTypeMapping TypeName="FS.Core.Entities.vNbaTeamStat">
+              <MappingFragment StoreEntitySet="vNbaTeamStats">
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="PTS" ColumnName="PTS" />
+                <ScalarProperty Name="TOVR" ColumnName="TOVR" />
+                <ScalarProperty Name="BLK" ColumnName="BLK" />
+                <ScalarProperty Name="STL" ColumnName="STL" />
+                <ScalarProperty Name="AST" ColumnName="AST" />
+                <ScalarProperty Name="REB" ColumnName="REB" />
+                <ScalarProperty Name="OREB" ColumnName="OREB" />
+                <ScalarProperty Name="FTPCT" ColumnName="FTPCT" />
+                <ScalarProperty Name="FG3PCT" ColumnName="FG3PCT" />
+                <ScalarProperty Name="FGPCT" ColumnName="FGPCT" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="GP" ColumnName="GP" />
+                <ScalarProperty Name="SeasonDesc" ColumnName="SeasonDesc" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vUsers">
+            <EntityTypeMapping TypeName="FS.Core.Entities.vUser">
+              <MappingFragment StoreEntitySet="vUsers">
+                <ScalarProperty Name="IdentityProviderName" ColumnName="IdentityProviderName" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

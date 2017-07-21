@@ -1,0 +1,11 @@
+﻿@model FS.App.Mvc5.Admin.Models.GameViewModel
+
+<div>
+    @Html.Action("Navbar")
+    @{
+        ViewBag.FormPostTo = "Index";
+        ViewBag.FormCancelTo = "Index";
+        ViewBag.FormPostButton = "Update";
+        @Html.Partial("_FormPartial", Model)
+    }
+</div>

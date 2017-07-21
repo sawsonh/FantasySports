@@ -1,0 +1,8 @@
+﻿@model FS.App.Mvc5.Admin.Models.GameViewModel
+
+@{
+    ViewBag.FormPostTo = "Create";
+    ViewBag.FormCancelTo = "Index";
+    ViewBag.FormPostButton = "Create";
+    @Html.Partial("_FormPartial", Model)
+}

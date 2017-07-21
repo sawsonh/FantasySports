@@ -1,0 +1,17 @@
+﻿@using GridMvc.Html
+@model IEnumerable<FS.App.Mvc5.Admin.Models.GameLeagueViewModel>
+
+<div>
+    @Html.Action("Navbar")
+    @using (Html.BeginForm("AddLeague", "Game", FormMethod.Post, new { area = "", id = "addForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("leagueId")
+    }
+    @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(c => c.Abbreviation).Titled("");
+        columns.Add(c => c.Name).Filterable(true);
+        columns.Add(c => c.LeagueId, "Add").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Add", "AddLeague", "Game", null, new { @class = "modal-link", onclick = "javascript:return submitForm([{leagueId:" + d.LeagueId + "}], 'addForm');" }).ToHtmlString());
+    }).WithPaging(10).Sortable(true)
+</div>
