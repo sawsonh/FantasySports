@@ -10,6 +10,7 @@ namespace FS.App.Mvc5.Game.Controllers
             return View();
         }
 
+        // About page
         public ActionResult About()
         {
             return View();
