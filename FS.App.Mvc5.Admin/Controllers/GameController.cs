@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Models;
 using FS.Core.Entities;
 using FS.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Controllers
 {
@@ -43,7 +43,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(GameViewModel model)
         {
             if (!ModelState.IsValid)
@@ -70,7 +71,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/Create
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(GameViewModel model)
         {
             if (!ModelState.IsValid)
@@ -91,12 +93,13 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/Delete
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             _gameSvc.Delete(id);
             TempData["SuccessMessage"] = "Game has been successfully deleted";
-            return RedirectToAction("Index", new { id = "" });
+            return RedirectToAction("Index", new {id = ""});
         }
 
         // GET: Game/{id}/Leagues
@@ -107,7 +110,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/Leagues
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Leagues(int id, int leagueId)
         {
             _gameSvc.RemoveLeague(id, leagueId);
@@ -124,7 +128,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/AddLeague
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddLeague(int id, int leagueId)
         {
             if (!ModelState.IsValid)
@@ -153,7 +158,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/Periods
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Periods(int id, GamePeriodViewModel model)
         {
             if (DateTime.Compare(model.PickStartDateTime, model.PickEndDateTime) >= 0)
@@ -180,7 +186,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/DeletePeriod
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePeriod(int id, int periodId)
         {
             try
@@ -203,7 +210,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Game/{id}/AddPeriod
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddPeriod(int id, FormCollection collection)
         {
             var models = new List<GamePeriodViewModel>();
@@ -215,7 +223,7 @@ namespace FS.App.Mvc5.Admin.Controllers
                     var name = collection[$"Name_{i}"];
                     if (string.IsNullOrEmpty(name))
                         ModelState.AddModelError("", "Period name is required");
-                    foreach (var x in new string[] { "Pick", "Report" })
+                    foreach (var x in new[] {"Pick", "Report"})
                     {
                         DateTime d1, d2;
                         if (DateTime.TryParse(collection[$"{x}StartDateTime_{i}"], out d1)
@@ -225,7 +233,9 @@ namespace FS.App.Mvc5.Admin.Controllers
                                 ModelState.AddModelError("", $"{x} start date must be after its end date.");
                         }
                         else
+                        {
                             ModelState.AddModelError("", $"Failed to parse {x} start and/or end date.");
+                        }
                     }
                     if (!ModelState.IsValid) continue;
                     int value;
@@ -260,6 +270,5 @@ namespace FS.App.Mvc5.Admin.Controllers
             }
             return RedirectToAction("Periods");
         }
-
     }
 }

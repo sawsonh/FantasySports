@@ -1,8 +1,8 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using FS.Infrastructure.DependencyResolution;
-using System.Reflection;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin
 {

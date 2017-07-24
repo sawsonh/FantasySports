@@ -38,41 +38,36 @@
  *  list-style-type, margin and padding.
  */
 
-.AnyTime-pkr *
-{
-    border:0;
-    font: inherit;
-    font-size: x-small;
-    font-style:normal;
-    font-weight:normal;
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    white-space: nowrap;
+.AnyTime-pkr * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    border: 0;
     box-sizing: border-box;
+    font: inherit;
+    font-size: x-small;
+    font-style: normal;
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
 }
 
 /*  .AnyTime-win simulates a "window" that might be a popup or inline.
  */
 
-.AnyTime-win
-{
-  background-color:#F0F0F1;
-  border:3px solid #C0C0C0;
-  display:inline-block;
-  font:normal normal normal xx-small/normal sans-serif;
-  -moz-border-radius:6px;
-  -webkit-border-radius:6px;
-  border-radius:6px;
+.AnyTime-win {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    background-color: #F0F0F1;
+    border: 3px solid #C0C0C0;
+    border-radius: 6px;
+    display: inline-block;
+    font: normal normal normal xx-small/normal sans-serif;
 }
 
 .AnyTime-pkr,
-.AnyTime-pkr *
-{
-  text-align:center;
-}
+.AnyTime-pkr * { text-align: center; }
 
 /*  .AnyTime-cloak covers an AnyTime-pkr whenever an AnyTime-yr-selector
  *  is placed over it.  The picker cannot be accessed until the
@@ -80,12 +75,11 @@
  *  AnyTime-cloak).
  */
 
-.AnyTime-pkr .AnyTime-cloak
-{
-  background-color:#D7D7D7;
-  opacity:0.7;
-  position:absolute;
-  filter:alpha(opacity=70);
+.AnyTime-pkr .AnyTime-cloak {
+    background-color: #D7D7D7;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    position: absolute;
 }
 
 /*  .AnyTime-hdr is the title bar at the top of a "window." In addition to
@@ -93,16 +87,15 @@
  *  contains .AnyTime-x-btn.
  */
 
-.AnyTime-pkr .AnyTime-hdr
-{
-  background-color:#D0D0D1;
-  color:#606062;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:medium;
-  font-weight:normal;
-  -moz-border-radius:2px;
-  -webkit-border-radius:2px;
-  border-radius:2px;
+.AnyTime-pkr .AnyTime-hdr {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-color: #D0D0D1;
+    border-radius: 2px;
+    color: #606062;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: normal;
 }
 
 /*  .AnyTime-x-btn is a pseudo-button that, when clicked, causes the entire
@@ -110,111 +103,95 @@
  *  almost anywhere off of it, or presses ESC).
  */
 
-.AnyTime-pkr .AnyTime-x-btn
-{
-  background-color:#FCFCFF;
-  border:1px solid #F99;
-  color:#FF9F9F;
-  cursor:default;
-  float:right;
-  margin:0.25em 0.25em 0 0;
-  width:1.5em;
-  -moz-border-radius:0.4em;
-  -webkit-border-radius:0.4em;
-  border-radius:0.4em;
+.AnyTime-pkr .AnyTime-x-btn {
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    background-color: #FCFCFF;
+    border: 1px solid #F99;
+    border-radius: 0.4em;
+    color: #FF9F9F;
+    cursor: default;
+    float: right;
+    margin: 0.25em 0.25em 0 0;
+    width: 1.5em;
 }
 
 /*  .AnyTime-btn is a pseudo-button for selection of a format field value.
  */
 
-.AnyTime-pkr .AnyTime-btn
-{
-  background-color:#FCFCFE;
-  border:1px solid #999;
-  color:#606062;
-  cursor:default;
-  font-family:Arial,Helvetica,sans-serif;
-  margin: 0 0.1em 0.1em 0;
-  padding: 0.2em 0.3em 0.2em 0.3em;
-  -moz-border-radius:0.1em;
-  -webkit-border-radius:0.1em;
-  border-radius:0.1em;
+.AnyTime-pkr .AnyTime-btn {
+    -moz-border-radius: 0.1em;
+    -webkit-border-radius: 0.1em;
+    background-color: #FCFCFE;
+    border: 1px solid #999;
+    border-radius: 0.1em;
+    color: #606062;
+    cursor: default;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 0.1em 0.1em 0;
+    padding: 0.2em 0.3em 0.2em 0.3em;
 }
 
 /*  .AnyTime-body contains everything in thee picker except the title bar.
  */
 
-.AnyTime-pkr .AnyTime-body
-{
-  margin:0 1em 1em 0;
-}
+.AnyTime-pkr .AnyTime-body { margin: 0 1em 1em 0; }
 
 /*  .AnyTime-date contains all content (labels and pseudo-buttons) for selecting
  *  a date (or part thereof).
  */
 
-.AnyTime-pkr .AnyTime-date
-{
-  display:inline-block;
-  margin-left:1em;
-  vertical-align:top;
+.AnyTime-pkr .AnyTime-date {
+    display: inline-block;
+    margin-left: 1em;
+    vertical-align: top;
 }
 
 /*  .AnyTime-lbl headings appear before each group of pseudo-buttons for a
  *  particular format field.  Each specific label has a class, also.
  */
 
-.AnyTime-pkr .AnyTime-lbl
-{
-  color:#606063;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:100%;
-  font-weight:normal;
-  font-style:normal;
-  margin-top:0.8em;
+.AnyTime-pkr .AnyTime-lbl {
+    color: #606063;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    font-style: normal;
+    font-weight: normal;
+    margin-top: 0.8em;
 }
 
 /*
  *  .AnyTime-yrs contains the year-selection pseudo-buttons.
  */
 
-.AnyTime-pkr .AnyTime-yrs
-{
-  width:20em;
-}
+.AnyTime-pkr .AnyTime-yrs { width: 20em; }
 
 /*
  *  Following are classes for the pseudo-buttons within .AnyTime-yrs
  */
 
 .AnyTime-pkr .AnyTime-yrs-past-btn,
-.AnyTime-pkr .AnyTime-yrs-ahead-btn
-{
-  display:inline-block;
-  width:2.4em;
+.AnyTime-pkr .AnyTime-yrs-ahead-btn {
+    display: inline-block;
+    width: 2.4em;
 }
 
 .AnyTime-pkr .AnyTime-yr-prior-btn,
 .AnyTime-pkr .AnyTime-yr-cur-btn,
-.AnyTime-pkr .AnyTime-yr-next-btn
-{
-  display:inline-block;
-  width:4.8em;
+.AnyTime-pkr .AnyTime-yr-next-btn {
+    display: inline-block;
+    width: 4.8em;
 }
 
 /*  .AnyTime-mons contains the month-selection pseudo-buttons.
  */
 
-.AnyTime-pkr .AnyTime-mons
-{
-  width: 20em;
-}
+.AnyTime-pkr .AnyTime-mons { width: 20em; }
 
-.AnyTime-pkr .AnyTime-mons:after
-{
-  content: "";
-  display: table;
-  clear: both;
+.AnyTime-pkr .AnyTime-mons:after {
+    clear: both;
+    content: "";
+    display: table;
 }
 
 
@@ -222,16 +199,12 @@
  *  Each pseudo-button also has a class of its own.
  */
 
-.AnyTime-pkr .AnyTime-mon-btn
-{
-  float:left;
-  width:3.2em;
+.AnyTime-pkr .AnyTime-mon-btn {
+    float: left;
+    width: 3.2em;
 }
 
-.AnyTime-pkr .AnyTime-mon7-btn
-{
-  clear:left;
-}
+.AnyTime-pkr .AnyTime-mon7-btn { clear: left; }
 
 
 /*  .AnyTime-dom-table is the table containing days-of-the-month.
@@ -243,23 +216,21 @@
  *  Each week has its own class (.AnyTime-wk***), also.
  */
 
-.AnyTime-pkr .AnyTime-dom-table
-{
-  background-color:#F0F0F1;
-  border:1px solid #E3E3E4;
-  border-spacing:1px;
-  width:20em;
+.AnyTime-pkr .AnyTime-dom-table {
+    background-color: #F0F0F1;
+    border: 1px solid #E3E3E4;
+    border-spacing: 1px;
+    width: 20em;
 }
 
-.AnyTime-pkr th.AnyTime-dow
-{
-  background-color:#C0C0C1;
-  color:white;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:95%;
-  font-weight:normal;
-  font-style:normal;
-  padding: 0.1em 0.3em;
+.AnyTime-pkr th.AnyTime-dow {
+    background-color: #C0C0C1;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 95%;
+    font-style: normal;
+    font-weight: normal;
+    padding: 0.1em 0.3em;
 }
 
 /*  .AnyTime-dom-btn is a pseudo-button for a day-of-the-month.
@@ -271,20 +242,18 @@
  *  .AnyTime-dom-btn-empty-below-filled is empty, below a filled button.
  */
 
-.AnyTime-pkr .AnyTime-dom-btn
-{
-  text-align:right;
-  padding-right:0.5em;
+.AnyTime-pkr .AnyTime-dom-btn {
+    padding-right: 0.5em;
+    text-align: right;
 }
 
 .AnyTime-pkr .AnyTime-dom-btn-empty,
 .AnyTime-pkr .AnyTime-min-ten-btn-empty,
 .AnyTime-pkr .AnyTime-min-one-btn-empty,
 .AnyTime-pkr .AnyTime-sec-ten-btn-empty,
-.AnyTime-pkr .AnyTime-sec-one-btn-empty
-{
-    background-color:#F3F3F4;
-    border:1px solid #C0C0c1;
+.AnyTime-pkr .AnyTime-sec-one-btn-empty {
+    background-color: #F3F3F4;
+    border: 1px solid #C0C0c1;
 }
 
 /*  .AnyTime-time contains all content (labels and pseudo-buttons) for selecting
@@ -297,10 +266,7 @@
 .AnyTime-pkr .AnyTime-mins-tens,
 .AnyTime-pkr .AnyTime-mins-ones,
 .AnyTime-pkr .AnyTime-secs-tens,
-.AnyTime-pkr .AnyTime-secs-ones
-{
-  display:inline-block;
-}
+.AnyTime-pkr .AnyTime-secs-ones { display: inline-block; }
 
 /*  .AnyTime-hrs contains two columns (.AnyTime-hrs-am and .AnyTime-hrs-pm) of
  *  pseudo-buttons for selecting hours.
@@ -309,20 +275,18 @@
 .AnyTime-pkr .AnyTime-hrs,
 .AnyTime-pkr .AnyTime-mins,
 .AnyTime-pkr .AnyTime-secs,
-.AnyTime-pkr .AnyTime-offs
-{
-  display:inline-block;
-  margin-left:1em;
+.AnyTime-pkr .AnyTime-offs {
+    display: inline-block;
+    margin-left: 1em;
 }
 
 /*  .AnyTime-hr-btn is a pseudo-button for selecting an hour.
  *  Each button also has a style of its own.
  */
 
-.AnyTime-pkr .AnyTime-hr-btn
-{
-  text-align:right;
-  width:3.5em;
+.AnyTime-pkr .AnyTime-hr-btn {
+    text-align: right;
+    width: 3.5em;
 }
 
 /*  .AnyTime-mins contains two columns (.AnyTime-mins-tens and .AnyTime-mins-ones)
@@ -334,10 +298,7 @@
  */
 
 .AnyTime-pkr .AnyTime-min-ten-btn,
-.AnyTime-pkr .AnyTime-min-one-btn
-{
-  width:2em;
-}
+.AnyTime-pkr .AnyTime-min-one-btn { width: 2em; }
 
 /*  .AnyTime-secs contains two columns (.AnyTime-secs-tens and .AnyTime-secs-ones)
  *  of pseudo-buttons for selecting seconds.
@@ -348,26 +309,21 @@
  */
 
 .AnyTime-pkr .AnyTime-sec-ten-btn,
-.AnyTime-pkr .AnyTime-sec-one-btn
-{
-  width:2em;
-}
+.AnyTime-pkr .AnyTime-sec-one-btn { width: 2em; }
 
 /*  .AnyTime-offs contains the UTC offset (timezone) selection pseudo-buttons.
  *  The two buttons have their own styles
  */
 
-.AnyTime-pkr .AnyTime-off-cur-btn
-{
-  display:inline-block;
-  overflow: hidden;
+.AnyTime-pkr .AnyTime-off-cur-btn {
+    display: inline-block;
+    overflow: hidden;
 }
 
-.AnyTime-pkr .AnyTime-off-select-btn
-{
-  display:inline-block;
-  vertical-align: top;
-  width:2em;
+.AnyTime-pkr .AnyTime-off-select-btn {
+    display: inline-block;
+    vertical-align: top;
+    width: 2em;
 }
 
 /*  .AnyTime-yr-selector is an overlay (popup) for selecting a specific year.
@@ -392,38 +348,25 @@
  *  Each era button has class .AnyTime-era-btn as well as its own class.
  */
 
-.AnyTime-pkr .AnyTime-yr-selector
-{
-  position:absolute;
-}
+.AnyTime-pkr .AnyTime-yr-selector { position: absolute; }
 
-.AnyTime-pkr .AnyTime-body-yr-selector
-{
-  margin:0.8em 1em;
-}
+.AnyTime-pkr .AnyTime-body-yr-selector { margin: 0.8em 1em; }
 
 .AnyTime-pkr .AnyTime-yr-mil,
 .AnyTime-pkr .AnyTime-yr-cent,
 .AnyTime-pkr .AnyTime-yr-dec,
 .AnyTime-pkr .AnyTime-yr-yr,
-.AnyTime-pkr .AnyTime-yr-era
-{
-  display:inline-block;
-  vertical-align:top;
+.AnyTime-pkr .AnyTime-yr-era {
+    display: inline-block;
+    vertical-align: top;
 }
 
 .AnyTime-pkr .AnyTime-mil-btn,
 .AnyTime-pkr .AnyTime-cent-btn,
 .AnyTime-pkr .AnyTime-dec-btn,
-.AnyTime-pkr .AnyTime-yr-btn
-{
-  width:2em;
-}
+.AnyTime-pkr .AnyTime-yr-btn { width: 2em; }
 
-.AnyTime-pkr .AnyTime-era-btn
-{
-  margin-left:1em;
-}
+.AnyTime-pkr .AnyTime-era-btn { margin-left: 1em; }
 
 
 /*  .AnyTime-off-selector is an overlay (popup) for selecting a specific year.
@@ -435,24 +378,19 @@
  *  .AnyTime-off-off-last-btn is the last offset-selector pseudo-button.
  */
 
-.AnyTime-pkr .AnyTime-off-selector
-{
-  margin:1em 2em;
-  position:absolute;
+.AnyTime-pkr .AnyTime-off-selector {
+    margin: 1em 2em;
+    position: absolute;
 }
 
-.AnyTime-pkr .AnyTime-body-off-selector
-{
-  margin:0.8em 1em;
-  overflow-x:hidden;
-  overflow-y:auto;
-  white-space:nowrap
+.AnyTime-pkr .AnyTime-body-off-selector {
+    margin: 0.8em 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap
 }
 
-.AnyTime-pkr .AnyTime-off-off-btn
-{
-  text-align:left;
-}
+.AnyTime-pkr .AnyTime-off-off-btn { text-align: left; }
 
 /*  .AnyTime-cur-btn is applied to every pseudo-button that represents
  *  a currently-selected value.  They should stand out from the other
@@ -461,12 +399,11 @@
  *  sufficient for color-blind users to differentiate the buttons.
  */
 
-.AnyTime-pkr .AnyTime-cur-btn
-{
-  border:1px solid #333334;
-  background-color:#C0C0C1;
-  color:#FCFCFE;
-  font-weight:bold;
+.AnyTime-pkr .AnyTime-cur-btn {
+    background-color: #C0C0C1;
+    border: 1px solid #333334;
+    color: #FCFCFE;
+    font-weight: bold;
 }
 
 /*  .AnyTime-out-btn is applied to every pseudo-button that represents
@@ -477,10 +414,9 @@
  *  buttons, it's probably no big deal.
  */
 
-.AnyTime-pkr .AnyTime-out-btn
-{
-    background-color:#F0F0F1;
-    border:1px solid #C0C0c1;
+.AnyTime-pkr .AnyTime-out-btn {
+    background-color: #F0F0F1;
+    border: 1px solid #C0C0c1;
 }
 
 /*  .AnyTime-focus-btn is applied to the single pseudo-button that appears to
@@ -491,10 +427,7 @@
  *  represent focus using a dashed or dotted border, this is recommended.
  */
 
-.AnyTime-pkr .AnyTime-focus-btn
-{
-  border:1px dashed black;
-}
+.AnyTime-pkr .AnyTime-focus-btn { border: 1px dashed black; }
 
 /*
  *  END OF FILE

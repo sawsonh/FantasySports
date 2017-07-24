@@ -1,18 +1,18 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Areas.Nba.Models;
 using FS.Core.Entities;
 using FS.Core.Services;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
 {
     [Authorize]
     public class TeamsController : Controller
     {
-        private readonly IDataService<NbaTeam> _nbaTeamSvc;
         private readonly IDataService<vNbaTeamStat> _nbaTeamStatSvc;
+        private readonly IDataService<NbaTeam> _nbaTeamSvc;
 
         public TeamsController(IDataService<NbaTeam> nbaTeamSvc, IDataService<vNbaTeamStat> nbaTeamStatSvc)
         {
@@ -30,7 +30,8 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
         }
 
         // GET: POST/Teams
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(NbaTeamViewModel model)
         {
             if (ModelState.IsValid)
@@ -49,10 +50,10 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
                         newEntity.CopyTo(entity, "Id");
                         _nbaTeamSvc.Update(entity);
                         TempData["SuccessMessage"] = "Changes have been successfully saved";
-                        return RedirectToAction("Index", new { id = "" });
+                        return RedirectToAction("Index", new {id = ""});
                     }
                     TempData["WarningMessage"] = "There were no changes saved";
-                    return RedirectToAction("Index", new { id = "" });
+                    return RedirectToAction("Index", new {id = ""});
                 }
             }
             return View("Edit", model);
@@ -61,9 +62,9 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
         // GET: Nba/Teams/Stats
         public ActionResult Stats(int? id)
         {
-            var model = _nbaTeamStatSvc.GetList(stat => stat.TeamId == id || id == null).AsQueryable().ProjectTo<NbaTeamStatViewModel>().ToList();
+            var model = _nbaTeamStatSvc.GetList(stat => stat.TeamId == id || id == null).AsQueryable()
+                .ProjectTo<NbaTeamStatViewModel>().ToList();
             return View(model);
         }
-
     }
 }

@@ -7,5 +7,5 @@
     columns.Add(c => c.City).Titled("City").Filterable(true);
     columns.Add(c => c.Nickname).Titled("Nickname").Filterable(true);
     columns.Add(c => c.Arena).Titled("Arena").Filterable(true);
-    columns.Add(c => c.TeamId).Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", "Teams", new { area = "Nba", Id = d.TeamId }, new { @class = "modal-link" }).ToHtmlString());
+    columns.Add(c => c.TeamId).Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", "Teams", new {area = "Nba", Id = d.TeamId}, new {@class = "modal-link"}).ToHtmlString());
 }).WithPaging(10).Sortable(true);

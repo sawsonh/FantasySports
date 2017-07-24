@@ -1,5 +1,5 @@
 ﻿@model FS.App.Mvc5.Admin.Models.GameViewModel
-@{ 
+@{
     Layout = null;
     var actionName = HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString().ToLower();
     ViewData["x_" + actionName] = "active";

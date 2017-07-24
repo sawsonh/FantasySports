@@ -1,9 +1,9 @@
-﻿using AutoMapper.QueryableExtensions;
-using FS.App.Mvc5.Admin.Models;
-using FS.Core.Services;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
+using FS.App.Mvc5.Admin.Models;
+using FS.Core.Services;
 
 namespace FS.App.Mvc5.Admin.Controllers
 {
@@ -27,7 +27,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: Configurations
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(ConfigurationViewModel model)
         {
             if (ModelState.IsValid)
@@ -45,10 +46,10 @@ namespace FS.App.Mvc5.Admin.Controllers
                         appSetting.Value = model.Value;
                         _cfgSvc.Update(appSetting);
                         TempData["SuccessMessage"] = "Changes have been successfully saved";
-                        return RedirectToAction("Index", new { id = "" });
+                        return RedirectToAction("Index", new {id = ""});
                     }
                     TempData["WarningMessage"] = "There were no changes saved";
-                    return RedirectToAction("Index", new { id = "" });
+                    return RedirectToAction("Index", new {id = ""});
                 }
             }
             return View("Edit", model);

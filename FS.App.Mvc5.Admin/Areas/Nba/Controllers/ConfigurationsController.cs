@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Models;
 using FS.Core.Entities;
 using FS.Core.Services;
-using System;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
 {
@@ -22,14 +22,16 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
         // GET: Nba/Configurations
         public ActionResult Index(int? id)
         {
-            var model = _cfgSvc.GetList(appSetting => appSetting.KeyName.ToLower().StartsWith("nba_")).AsQueryable().ProjectTo<ConfigurationViewModel>().ToList();
+            var model = _cfgSvc.GetList(appSetting => appSetting.KeyName.ToLower().StartsWith("nba_")).AsQueryable()
+                .ProjectTo<ConfigurationViewModel>().ToList();
             return id != null
                 ? View("Edit", model.Where(m => m.Id == id).FirstOrDefault())
                 : View(model);
         }
 
         // GET: POST/Configurations
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(ConfigurationViewModel model)
         {
             if (!ModelState.IsValid)
@@ -38,7 +40,7 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
             {
                 _cfgSvc.Update(Mapper.Map<AppSetting>(model));
                 TempData["SuccessMessage"] = "Changes have been successfully saved";
-                return RedirectToAction("Index", new { id = "" });
+                return RedirectToAction("Index", new {id = ""});
             }
             catch (Exception ex)
             {

@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Models;
 using FS.Core.Entities;
 using FS.Core.Services;
-using System;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Controllers
 {
@@ -29,7 +29,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: IdentityProvider/{id}
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(IdentityProviderViewModel model)
         {
             if (!ModelState.IsValid)
@@ -56,7 +57,8 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: IdentityProvider/Create
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(IdentityProviderViewModel model)
         {
             if (!ModelState.IsValid)
@@ -77,14 +79,14 @@ namespace FS.App.Mvc5.Admin.Controllers
         }
 
         // POST: IdentityProvider/{id}/Delete
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(IdentityProviderViewModel model)
         {
             var idp = Mapper.Map<IdentityProvider>(model);
             _idpSvc.Remove(idp);
             TempData["SuccessMessage"] = "Identity provider has been successfully deleted";
-            return RedirectToAction("Index", new { id = "" });
+            return RedirectToAction("Index", new {id = ""});
         }
-
     }
 }

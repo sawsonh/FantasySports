@@ -1,7 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using FS.App.Mvc5.Admin;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(FS.App.Mvc5.Admin.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
+
 namespace FS.App.Mvc5.Admin
 {
     public partial class Startup

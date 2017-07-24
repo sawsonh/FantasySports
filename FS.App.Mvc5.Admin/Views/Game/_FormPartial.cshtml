@@ -4,36 +4,36 @@
     string formCancelTo = ViewBag.FormCancelTo.ToString();
     string formPostButton = ViewBag.FormPostButton.ToString();
 }
-@using (Html.BeginForm(formPostTo, "Game", FormMethod.Post, new { area = "", id = $"{formPostButton.ToLower()}Form" }))
+@using (Html.BeginForm(formPostTo, "Game", FormMethod.Post, new {area = "", id = $"{formPostButton.ToLower()}Form"}))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
         <div class="col-lg-12">
             <div class="col-lg-12">
                 @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
             </div>
             <div class="col-lg-6">
                 @Html.LabelFor(m => m.RegistrationStartDate)
-                @Html.TextBoxFor(m => m.RegistrationStartDate, new { @class = "form-control datepicker" })
+                @Html.TextBoxFor(m => m.RegistrationStartDate, new {@class = "form-control datepicker"})
             </div>
             <div class="col-lg-6">
                 @Html.LabelFor(m => m.RegistrationEndDate)
-                @Html.TextBoxFor(m => m.RegistrationEndDate, new { @class = "form-control datepicker" })
+                @Html.TextBoxFor(m => m.RegistrationEndDate, new {@class = "form-control datepicker"})
             </div>
             <div class="col-lg-6">
                 @Html.LabelFor(m => m.PlayStartDate)
-                @Html.TextBoxFor(m => m.PlayStartDate, new { @class = "form-control datepicker" })
+                @Html.TextBoxFor(m => m.PlayStartDate, new {@class = "form-control datepicker"})
             </div>
             <div class="col-lg-6">
                 @Html.LabelFor(m => m.PlayEndDate)
-                @Html.TextBoxFor(m => m.PlayEndDate, new { @class = "form-control datepicker" })
+                @Html.TextBoxFor(m => m.PlayEndDate, new {@class = "form-control datepicker"})
             </div>
         </div>
         <div class="col-lg-12">
-            <br />
+            <br/>
             <button type="submit" class="btn btn-default">@formPostButton</button>
-            <button onclick="top.location.href='@Url.Action(formCancelTo, new { id = "" })'; return false;" class="btn btn-default">Cancel</button>
+            <button onclick="top.location.href = '@Url.Action(formCancelTo, new {id = ""})';return false;" class="btn btn-default">Cancel</button>
         </div>
     </div>
 }
