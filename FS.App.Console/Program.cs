@@ -10,10 +10,10 @@ namespace FS.App.Console
     {
         static void Main(string[] args)
         {
-            var dateTime = DateTime.Now.AddHours(-6);
+            var dateTime = DateTime.Now.AddHours(-7);
             if (args.Any())
                 if (!DateTime.TryParse(args[0], out dateTime))
-                    dateTime = DateTime.Now.AddHours(-6);
+                    dateTime = DateTime.Now.AddHours(-7);
 
             var builder = new ContainerBuilder();
 
