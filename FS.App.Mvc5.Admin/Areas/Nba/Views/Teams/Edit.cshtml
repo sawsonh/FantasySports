@@ -1,23 +1,23 @@
 ﻿@model FS.App.Mvc5.Admin.Areas.Nba.Models.NbaTeamViewModel
 
-@using (Html.BeginForm("Index", "Teams", FormMethod.Post, new { area = "Nba", id = "editForm" }))
+@using (Html.BeginForm("Index", "Teams", FormMethod.Post, new {area = "Nba", id = "editForm"}))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
         <p>
             @Html.HiddenFor(m => m.TeamId)
             @Html.LabelFor(m => m.Abbreviation)
-            @Html.TextBoxFor(m => m.Abbreviation, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Abbreviation, new {@class = "form-control"})
             @Html.LabelFor(m => m.City)
-            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.City, new {@class = "form-control"})
             @Html.LabelFor(m => m.Nickname)
-            @Html.TextBoxFor(m => m.Nickname, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Nickname, new {@class = "form-control"})
             @Html.LabelFor(m => m.Arena)
-            @Html.TextBoxFor(m => m.Arena, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Arena, new {@class = "form-control"})
         </p>
         <p>
             <button type="submit" class="btn btn-default">Update</button>
-            <button onclick="top.location.href='@Url.Action("Index", new { id = "" })'; return false;" class="btn btn-default">Cancel</button>
+            <button onclick="top.location.href = '@Url.Action("Index", new {id = ""})';return false;" class="btn btn-default">Cancel</button>
         </p>
     </div>
 }

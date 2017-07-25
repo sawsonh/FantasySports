@@ -101,7 +101,7 @@ namespace FS.Infrastructure.Services
         /// <param name="ex">System exception thrown</param>
         public void CatchException(string methodName, object[] parameters, Exception ex)
         {
-            Error(string.Format("{0} {1}({2});  {3}", this.ToString(), methodName, string.Join(",", parameters), ex.Message), ex);
+            Error($"{this} {methodName}({string.Join(",", parameters)});  {ex.Message}", ex);
         }
 
         #endregion

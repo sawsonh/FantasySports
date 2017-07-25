@@ -15,106 +15,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/css/Gridmvc")
     @Styles.Render("~/Content/css/font-awesome")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("styles", required: false)
+    @RenderSection("styles", false)
 
 </head>
 <body>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Fantasy Sports ADMIN", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                @Html.Partial("_TopNavPartial")
-                <li class="dropdown">
-                    @Html.Partial("_LoginPartial")
-                </li>
-            </ul>
-            @Html.Partial("_MenuPartial")
-        </nav>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Fantasy Sports ADMIN", "Login", "Account", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            @Html.Partial("_TopNavPartial")
+            <li class="dropdown">
+                @Html.Partial("_LoginPartial")
+            </li>
+        </ul>
+        @Html.Partial("_MenuPartial")
+    </nav>
 
-        <div id="page-wrapper">
+    <div id="page-wrapper">
 
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            @ViewBag.PageHeader
-                            <small>@ViewBag.PageSubHeader</small>
-                        </h1>
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        @ViewBag.PageHeader
+                        <small>@ViewBag.PageSubHeader</small>
+                    </h1>
 
-                        @if (ViewData.ModelState.Values.SelectMany(v => v.Errors).Any(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
-                        {
-                            <div class="alert alert-danger">
-                                @foreach (ModelState modelState in ViewData.ModelState.Values)
+                    @if (ViewData.ModelState.Values.SelectMany(v => v.Errors).Any(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
+                    {
+                        <div class="alert alert-danger">
+                            @foreach (var modelState in ViewData.ModelState.Values)
+                            {
+                                foreach (var error in modelState.Errors.Where(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
                                 {
-                                    foreach (ModelError error in modelState.Errors.Where(e => !string.IsNullOrEmpty(e.ErrorMessage.Trim())))
-                                    {
-                                        @error.ErrorMessage<br />
-                                    }
+                                    @error.ErrorMessage<br/>
                                 }
-                            </div>
-                        }
-                        @if (!string.IsNullOrEmpty(TempData["WarningMessage"]?.ToString()))
-                        {
-                            <div class="alert alert-warning">
-                                @TempData["WarningMessage"].ToString()
-                            </div>
-                        }
-                        @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
-                        {
-                            <div class="alert alert-success">
-                                @TempData["SuccessMessage"].ToString()
-                            </div>
-                        }
+                            }
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(TempData["WarningMessage"]?.ToString()))
+                    {
+                        <div class="alert alert-warning">
+                            @TempData["WarningMessage"].ToString()
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+                    {
+                        <div class="alert alert-success">
+                            @TempData["SuccessMessage"].ToString()
+                        </div>
+                    }
 
-                        @RenderBody()
+                    @RenderBody()
 
-                    </div>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/gridmvc")
-    @Scripts.Render("~/bundles/game")
-    <script src="~/Scripts/plugins/anytime/anytime.5.0.5.js"></script>
-    <script>
-        $(".datepicker").AnyTime_picker({
-            baseYear: 2000,
-            earliest: new Date(2000, 0, 1, 0, 0, 0),
-            format: "%m/%d/%Y %h:%i:00 %p"
-        });
-    </script>
-    @RenderSection("scripts", required: false)
+</div>
+<!-- /#wrapper -->
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/gridmvc")
+@Scripts.Render("~/bundles/game")
+<script src="~/Scripts/plugins/anytime/anytime.5.0.5.js"></script>
+<script>
+    $(".datepicker").AnyTime_picker({
+        baseYear: 2000,
+        earliest: new Date(2000, 0, 1, 0, 0, 0),
+        format: "%m/%d/%Y %h:%i:00 %p"
+    });
+</script>
+@RenderSection("scripts", false)
 </body>
 </html>

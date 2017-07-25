@@ -1,8 +1,8 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using System.Linq;
+using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Models;
 using FS.Core.Services;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Controllers
 {

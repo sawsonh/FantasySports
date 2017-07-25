@@ -2,10 +2,10 @@
 @model IEnumerable<FS.App.Mvc5.Admin.Models.UserViewModel>
 
 <p>
-    <button type="button" class="btn btn-default" onclick="top.location.href='@Url.Action("Create")'">Add User</button>
+    <button type="button" class="btn btn-default" onclick="top.location.href = '@Url.Action("Create")'">Add User</button>
 </p>
 
-@using (Html.BeginForm("Delete", "User", FormMethod.Post, new { area = "", id = "deleteForm" }))
+@using (Html.BeginForm("Delete", "User", FormMethod.Post, new {area = "", id = "deleteForm"}))
 {
     @Html.AntiForgeryToken()
     @Html.Hidden("id")
@@ -17,6 +17,6 @@
     columns.Add(c => c.Email).Filterable(true);
     columns.Add(c => c.CreateDateTime).Filterable(true);
     columns.Add(c => c.IdentityProviderName).Filterable(true);
-    columns.Add(c => c.Id, "Edit").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", new { area = "", id = d.Id }, new { @class = "modal-link" }).ToHtmlString());
-    columns.Add(c => c.Id, "Delete").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Delete", "Delete", null, new { @class = "modal-link", onclick = "javascript:return submitForm([{id:" + d.Id + "}], 'deleteForm');" }).ToHtmlString());
+    columns.Add(c => c.Id, "Edit").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Edit", "Index", new {area = "", id = d.Id}, new {@class = "modal-link"}).ToHtmlString());
+    columns.Add(c => c.Id, "Delete").Titled("").Sanitized(false).Encoded(false).RenderValueAs(d => Html.ActionLink("Delete", "Delete", null, new {@class = "modal-link", onclick = "javascript:return submitForm([{id:" + d.Id + "}], 'deleteForm');"}).ToHtmlString());
 }).WithPaging(10).Sortable(true)

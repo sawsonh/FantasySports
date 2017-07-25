@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace FS.App.Console
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var dateTime = DateTime.Now.AddHours(-7);
             if (args.Any())

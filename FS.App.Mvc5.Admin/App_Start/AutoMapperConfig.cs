@@ -1,8 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using FS.App.Mvc5.Admin.Areas.Nba.Models;
 using FS.App.Mvc5.Admin.Models;
+using FS.Core.Entities;
 using FS.Infrastructure.DependencyResolution;
-using System.Collections.Generic;
 
 namespace FS.App.Mvc5.Admin
 {
@@ -10,7 +11,8 @@ namespace FS.App.Mvc5.Admin
     {
         public static void Configure()
         {
-            var profiles = new List<Profile>{
+            var profiles = new List<Profile>
+            {
                 new AutoMapperApiProfile()
             };
             AutomapperDependencyResolution.Configure(profiles);
@@ -23,60 +25,59 @@ namespace FS.App.Mvc5.Admin
         {
             // Entities to Models
 
-            Mapper.CreateMap<Core.Entities.vNbaGame, NbaGameViewModel>()
+            Mapper.CreateMap<vNbaGame, NbaGameViewModel>()
                 .ForMember(d => d.Quarter, m => m.MapFrom(s => s.PeriodValue))
                 .ForMember(d => d.Status, m => m.MapFrom(s => s.PeriodStatus))
                 .ForMember(d => d.Visitor, m => m.MapFrom(s => s.VisitorTeamNickname))
                 .ForMember(d => d.Home, m => m.MapFrom(s => s.HomeTeamNickname));
 
-            Mapper.CreateMap<Core.Entities.NbaTeam, NbaTeamViewModel>();
+            Mapper.CreateMap<NbaTeam, NbaTeamViewModel>();
 
-            Mapper.CreateMap<Core.Entities.AppSetting, ConfigurationViewModel>()
+            Mapper.CreateMap<AppSetting, ConfigurationViewModel>()
                 .ForMember(d => d.Name, m => m.MapFrom(s => s.KeyName));
 
-            Mapper.CreateMap<Core.Entities.Game, GameViewModel>();
+            Mapper.CreateMap<Game, GameViewModel>();
 
-            Mapper.CreateMap<Core.Entities.League, GameLeagueViewModel>()
+            Mapper.CreateMap<League, GameLeagueViewModel>()
                 .ForMember(d => d.LeagueId, m => m.MapFrom(s => s.Id));
 
-            Mapper.CreateMap<Core.Entities.Period, GamePeriodViewModel>()
+            Mapper.CreateMap<Period, GamePeriodViewModel>()
                 .ForMember(d => d.PeriodId, m => m.MapFrom(s => s.Id));
 
-            Mapper.CreateMap<Core.Entities.vNbaTeamStat, NbaTeamStatViewModel>();
+            Mapper.CreateMap<vNbaTeamStat, NbaTeamStatViewModel>();
 
-            Mapper.CreateMap<Core.Entities.IdentityProvider, IdentityProviderViewModel>();
+            Mapper.CreateMap<IdentityProvider, IdentityProviderViewModel>();
 
-            Mapper.CreateMap<Core.Entities.vUser, UserViewModel>();
+            Mapper.CreateMap<vUser, UserViewModel>();
 
-            Mapper.CreateMap<Core.Entities.Entry, EntryViewModel>();
+            Mapper.CreateMap<Entry, EntryViewModel>();
 
             // Models to Entities
 
-            Mapper.CreateMap<NbaGameViewModel, Core.Entities.vNbaGame>()
+            Mapper.CreateMap<NbaGameViewModel, vNbaGame>()
                 .ForMember(d => d.PeriodValue, m => m.MapFrom(s => s.Quarter))
                 .ForMember(d => d.PeriodStatus, m => m.MapFrom(s => s.Status))
                 .ForMember(d => d.VisitorTeamNickname, m => m.MapFrom(s => s.Visitor))
                 .ForMember(d => d.HomeTeamNickname, m => m.MapFrom(s => s.Home));
 
-            Mapper.CreateMap<NbaTeamViewModel, Core.Entities.NbaTeam>();
+            Mapper.CreateMap<NbaTeamViewModel, NbaTeam>();
 
-            Mapper.CreateMap<ConfigurationViewModel, Core.Entities.AppSetting>()
+            Mapper.CreateMap<ConfigurationViewModel, AppSetting>()
                 .ForMember(d => d.KeyName, m => m.MapFrom(s => s.Name));
 
-            Mapper.CreateMap<GameViewModel, Core.Entities.Game>();
+            Mapper.CreateMap<GameViewModel, Game>();
 
-            Mapper.CreateMap<GameLeagueViewModel, Core.Entities.League>()
+            Mapper.CreateMap<GameLeagueViewModel, League>()
                 .ForMember(d => d.Id, m => m.MapFrom(s => s.LeagueId));
 
-            Mapper.CreateMap<GamePeriodViewModel, Core.Entities.Period>()
+            Mapper.CreateMap<GamePeriodViewModel, Period>()
                 .ForMember(d => d.Id, m => m.MapFrom(s => s.PeriodId));
 
-            Mapper.CreateMap<IdentityProviderViewModel, Core.Entities.IdentityProvider>();
+            Mapper.CreateMap<IdentityProviderViewModel, IdentityProvider>();
 
-            Mapper.CreateMap<UserViewModel, Core.Entities.vUser>();
+            Mapper.CreateMap<UserViewModel, vUser>();
 
-            Mapper.CreateMap<EntryViewModel, Core.Entities.Entry>();
-
+            Mapper.CreateMap<EntryViewModel, Entry>();
         }
     }
 }

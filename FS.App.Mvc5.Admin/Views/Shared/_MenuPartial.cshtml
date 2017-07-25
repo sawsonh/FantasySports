@@ -9,34 +9,34 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
             <li class="@ViewData["main_dashboard"]">
-                <a href="@Url.Action("Index", "Dashboard", new { area = "" })"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                <a href="@Url.Action("Index", "Dashboard", new {area = ""})"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
             <li class="@ViewData["main_game"]">
-                <a href="@Url.Action("Index", "Game", new { area = "" })"><i class="fa fa-fw fa-gamepad"></i> Games</a>
+                <a href="@Url.Action("Index", "Game", new {area = ""})"><i class="fa fa-fw fa-gamepad"></i> Games</a>
             </li>
             <li class="@ViewData["main_identityprovider"]">
-                <a href="@Url.Action("Index", "IdentityProvider", new { area = "" })"><i class="fa fa-fw fa-users"></i> Identity Providers</a>
+                <a href="@Url.Action("Index", "IdentityProvider", new {area = ""})"><i class="fa fa-fw fa-users"></i> Identity Providers</a>
             </li>
             <li class="@ViewData["main_user"]">
-                <a href="@Url.Action("Index", "User", new { area = "" })"><i class="fa fa-fw fa-user"></i> Users</a>
+                <a href="@Url.Action("Index", "User", new {area = ""})"><i class="fa fa-fw fa-user"></i> Users</a>
             </li>
             <li class="@ViewData["main_entry"]">
-                <a href="@Url.Action("Index", "Entry", new { area = "" })"><i class="fa fa-fw fa-futbol-o"></i> Entries</a>
+                <a href="@Url.Action("Index", "Entry", new {area = ""})"><i class="fa fa-fw fa-futbol-o"></i> Entries</a>
             </li>
             <li class="@ViewData["nba"]">
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> NBA <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="@Url.Action("Index", "Games", new { area = "Nba" })">Games</a>
+                        <a href="@Url.Action("Index", "Games", new {area = "Nba"})">Games</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index", "Teams", new { area = "Nba" })">Teams</a>
+                        <a href="@Url.Action("Index", "Teams", new {area = "Nba"})">Teams</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Stats", "Teams", new { area = "Nba" })">Team Stats</a>
+                        <a href="@Url.Action("Stats", "Teams", new {area = "Nba"})">Team Stats</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index", "Configurations", new { area = "Nba" })">Configurations</a>
+                        <a href="@Url.Action("Index", "Configurations", new {area = "Nba"})">Configurations</a>
                     </li>
                 </ul>
             </li>

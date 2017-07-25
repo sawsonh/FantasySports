@@ -2,7 +2,7 @@
 
 <div>
     @Html.Action("Navbar")
-    @using (Html.BeginForm("AddPeriod", "Game", FormMethod.Post, new { area = "", id = "addForm" }))
+    @using (Html.BeginForm("AddPeriod", "Game", FormMethod.Post, new {area = "", id = "addForm"}))
     {
         @Html.AntiForgeryToken()
         @Html.Hidden("periodId")
@@ -17,7 +17,7 @@
             </p>
             <p>
                 <button type="submit" class="btn btn-default">Submit</button>
-                <button onclick="top.location.href='@Url.Action("Periods")'; return false;" class="btn btn-default">Cancel</button>
+                <button onclick="top.location.href = '@Url.Action("Periods")';return false;" class="btn btn-default">Cancel</button>
             </p>
         </div>
     }
@@ -27,27 +27,27 @@
     <div class="parent">
         <div class="col-lg-2">
             @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
         </div>
         <div class="col-lg-1">
             @Html.LabelFor(m => m.Value)
-            @Html.TextBoxFor(m => m.Value, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Value, new {@class = "form-control"})
         </div>
         <div class="col-lg-2">
             @Html.LabelFor(m => m.PickStartDateTime)
-            @Html.TextBoxFor(m => m.PickStartDateTime, new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(m => m.PickStartDateTime, new {@class = "form-control datepicker"})
         </div>
         <div class="col-lg-2">
             @Html.LabelFor(m => m.PickEndDateTime)
-            @Html.TextBoxFor(m => m.PickEndDateTime, new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(m => m.PickEndDateTime, new {@class = "form-control datepicker"})
         </div>
         <div class="col-lg-2">
             @Html.LabelFor(m => m.ReportStartDateTime)
-            @Html.TextBoxFor(m => m.ReportStartDateTime, new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(m => m.ReportStartDateTime, new {@class = "form-control datepicker"})
         </div>
         <div class="col-lg-2">
             @Html.LabelFor(m => m.ReportEndDateTime)
-            @Html.TextBoxFor(m => m.ReportEndDateTime, new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(m => m.ReportEndDateTime, new {@class = "form-control datepicker"})
         </div>
         <div class="col-lg-1" style="padding-top: 15px;">
             <a href="#" class="remove"><i class="fa fa-fw fa-close"></i></a>

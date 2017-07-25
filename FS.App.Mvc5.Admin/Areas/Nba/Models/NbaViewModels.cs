@@ -17,7 +17,7 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Models
         public string HomeScore { get; set; }
         public DateTime? LastUpdated { get; set; }
     }
-    
+
     public class NbaTeamViewModel
     {
         public int TeamId { get; set; }
@@ -45,5 +45,4 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Models
         public double? TOVR { get; set; }
         public double? PTS { get; set; }
     }
-
 }

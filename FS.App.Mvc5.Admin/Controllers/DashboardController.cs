@@ -1,6 +1,6 @@
-﻿using FS.Core.Services;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
+using FS.Core.Services;
 
 namespace FS.App.Mvc5.Admin.Controllers
 {
@@ -19,7 +19,7 @@ namespace FS.App.Mvc5.Admin.Controllers
         {
             return View();
         }
-        
+
         public JsonResult UserCount()
         {
             var svc = _resolver.GetService(typeof(IUserService)) as IUserService;

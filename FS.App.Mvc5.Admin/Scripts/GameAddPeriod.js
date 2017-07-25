@@ -5,11 +5,11 @@ var dateConverter = new AnyTime.Converter({
     format: dateFormatString
 });
 var periodId = 0;
-var template = $('#addTemplate').html();
-$(function () {
+var template = $("#addTemplate").html();
+$(function() {
     addTemplate(periodId++);
 
-    $("#addPeriod").click(function (e) {
+    $("#addPeriod").click(function(e) {
         e.preventDefault();
         var errorMessage = validateFields();
         if (errorMessage.length > 0) {
@@ -19,15 +19,17 @@ $(function () {
         addTemplate(periodId++);
     });
 
-    $("#periods").on("click", "a.remove", function (e) {
-        e.preventDefault();
-        $(this).closest("div.parent").remove();
-    });
+    $("#periods").on("click",
+        "a.remove",
+        function(e) {
+            e.preventDefault();
+            $(this).closest("div.parent").remove();
+        });
 });
 
 function validateFields() {
     var isComplete = true;
-    $("#periods input[data-val-required]").each(function () {
+    $("#periods input[data-val-required]").each(function() {
         if ($(this).val().length == 0) {
             isComplete = false;
             return false;
@@ -36,7 +38,7 @@ function validateFields() {
     if (!isComplete) {
         return "Complete all text fields before adding";
     }
-    $("#periods div.parent").each(function () {
+    $("#periods div.parent").each(function() {
         var arr = ["Pick", "Report"];
         for (var i = 0; i < arr.length; i++) {
             var d1 = dateConverter.parse($(this).find("[name^='" + arr[i] + "StartDateTime']").val());
@@ -55,11 +57,11 @@ function validateFields() {
 
 function addTemplate(idx) {
     var tmpl = $(template);
-    tmpl.find("label").each(function () {
+    tmpl.find("label").each(function() {
         var id = $(this).attr("for");
         $(this).attr("for", id + "_" + idx);
     });
-    tmpl.find("input").each(function () {
+    tmpl.find("input").each(function() {
         var id = $(this).attr("id");
         $(this).attr("id", id + "_" + idx);
         var name = $(this).attr("name");
@@ -80,7 +82,7 @@ function addTemplate(idx) {
             tmpl.find("#" + arr[i] + "EndDateTime_" + idx).val(dateConverter.format(d2));
         }
     }
-    $('#periods').append(tmpl);
+    $("#periods").append(tmpl);
     $("#periodId").val(idx);
     //$(".datepicker").datepicker();
 

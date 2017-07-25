@@ -1,18 +1,18 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
 using FS.App.Mvc5.Admin.Areas.Nba.Models;
 using FS.Core.Entities;
 using FS.Core.Services;
-using System;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
 {
     [Authorize]
     public class GamesController : Controller
     {
-        private readonly INbaService _nbaSvc;
         private readonly IDataService<vNbaGame> _nbaGameSvc;
+        private readonly INbaService _nbaSvc;
 
         public GamesController(INbaService nbaSvc, IDataService<vNbaGame> nbaGameSvc)
         {
@@ -23,12 +23,14 @@ namespace FS.App.Mvc5.Admin.Areas.Nba.Controllers
         // GET: Nba/Games
         public ActionResult Index()
         {
-            var model = _nbaGameSvc.GetAll().OrderByDescending(nba => nba.DateTime).AsQueryable().ProjectTo<NbaGameViewModel>().ToList();
+            var model = _nbaGameSvc.GetAll().OrderByDescending(nba => nba.DateTime).AsQueryable()
+                .ProjectTo<NbaGameViewModel>().ToList();
             return View(model);
         }
 
         // GET: POST/Games/Resync
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Resync(DateTime dateTime)
         {
             _nbaSvc.Run(dateTime);
