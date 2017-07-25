@@ -4,7 +4,7 @@ namespace FS.App.Mvc5.Game.Controllers
 {
     public class HomeController : Controller
     {
-        // Landing page - #6
+        // Landing page - #4
         public ActionResult Index()
         {
             return View();
